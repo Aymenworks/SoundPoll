@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SplashViewController.swift
 //  SoundPool
 //
 //  Created by Rebouh Aymen on 28/03/2015.
@@ -8,18 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SplashViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64((2 * NSEC_PER_SEC))), dispatch_get_main_queue()) {
+            self.performSegueWithIdentifier("goToMusicsListViewFromSplashView", sender: self)
+        }
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
 }
-
