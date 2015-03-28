@@ -23,7 +23,6 @@
 import Foundation
 import UIKit.UIImage
 
-
 /// Alamofire errors
 public let AlamofireErrorDomain = "com.alamofire.error"
 
