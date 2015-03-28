@@ -1,0 +1,5 @@
+# Hidden files
+**/.*
+
+# Dependencies
+**/node_modules/*
