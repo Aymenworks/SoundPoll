@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var play = require('play').Play();
-play.usePlayer(process.env.PLAYER || 'mplayer');
 
 var app = express();
 
@@ -23,8 +22,8 @@ var voted = {
 var MUSICS_PATH = process.env.MUSICS_PATH || '/home/pi/musics/';
 
 var playlistPaths = {
-	'1': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
-	'2': path.join(MUSICS_PATH, 'match0.wav'),
+  '1': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
+  '2': path.join(MUSICS_PATH, 'match0.wav'),
   '3': path.join(MUSICS_PATH, 'beatboxing flute super mario brothers theme.m4a'),
   '4': path.join(MUSICS_PATH, 'beep1.ogg'),
   '5': path.join(MUSICS_PATH, 'badswap.wav'),
@@ -108,18 +107,16 @@ function sortSongs(s1, s2) {
       (score1 < score2 ? 1 : -1); // Sort in descending score
 }
 
-function playNextSong(next) {
+function handlePlaysound() {
+  console.log('launching song');
+  db.playlist.current.playing = true;
+  play.sound(playlistPaths[db.playlist.current.id], handlePlaysound);
+
   console.log('choosing next song');
   db.playlist.current = db.playlist.following[0];
   db.playlist.following.splice(0, 1);  // Removes the first song
 
-  if (0 === db.length) return next();
-
-  console.log('launching next song');
-  play.sound(playlistPaths[db.playlist.current.id], function () {
-    console.log('finished');
-    playNextSong(next);
-  });
+  if (0 === db.playlist.following.length) return;
 }
 
 app.get('/playlist', function(req, res, next) {
@@ -129,10 +126,7 @@ app.get('/playlist', function(req, res, next) {
 app.get('/launch', function(req, res, next) {
   if (!db.playlist.current.playing) {
     console.log('first');
-    play.sound(playlistPaths[db.playlist.current.id], function () {
-      console.log('first done');
-      playNextSong(next);
-    });
+    handlePlaysound();
   }
   res.status(200).send('ok');
 });
