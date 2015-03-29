@@ -24,16 +24,13 @@ class MusicsListViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageDownloaded:", name: "DownloadedImageNotification", object: nil)
 
         self.navigationItem.hidesBackButton = true
-
         self.musicTableView.tableFooterView = UIView()
         self.musicTableView.tableHeaderView = UIView()
-        
         self.currentMusicCoverImage.image = Facade.sharedInstance().musics().first?.picture.thumbnail
-        
         self.currentMusicTitle.text = Facade.sharedInstance().musics().first?.name
-        
         self.currentMusicArtist.text = Facade.sharedInstance().musics().first?.artist
-
+        
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerReloadData", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,6 +78,24 @@ class MusicsListViewController: UIViewController {
                 BFRadialWaveHUD.sharedInstance().dismiss()
             }
         }
+    }
+    
+    func timerReloadData() {
+        
+        println("timer reload")
+        Facade.sharedInstance().playlist { (jsonPlaylist, error) -> Void in
+            
+            if error == nil && jsonPlaylist != nil && jsonPlaylist!.isOk() {
+                
+                let playlist = jsonPlaylist!["playlist"]["following"]
+                let currentMusic = jsonPlaylist!["playlist"]["current"]
+                Facade.sharedInstance().addCurrentMusicFromJSON(currentMusic)
+                Facade.sharedInstance().addPlaylistFromJSON(playlist)
+                Facade.sharedInstance().fetchMusicsPictures()
+                self.musicTableView.reloadData()
+            }
+        }
+
     }
     
 }

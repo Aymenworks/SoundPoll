@@ -37,12 +37,6 @@ class MusicTableViewCell: UITableViewCell {
             if music.picture.url == nil {
                 self.musicThumbnailImage.image = UIImage(named: "music")
             }
-            
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64((6 * NSEC_PER_SEC))), dispatch_get_main_queue()) {
-                    println("je toggle")
-                    self.toggleLike()
-            }
         }
     }
     
