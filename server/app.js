@@ -120,6 +120,7 @@ function handlePlaysound() {
 }
 
 app.get('/playlist', function(req, res, next) {
+  voted[req.ip] = voted[req.ip] || {liked: [], disliked: []};
   var liked = voted[req.ip].liked,
     disliked = voted[req.ip].disliked;
 
@@ -127,11 +128,11 @@ app.get('/playlist', function(req, res, next) {
     var song = db.playlist.following[id];
     song.hasLiked = true;
   }
-  for (var id in liked) {
+  for (var id in disliked) {
     var song = db.playlist.following[id];
     song.hasDisliked = true;
   }
-	res.status(200).json(db);
+  res.status(200).json(db);
 });
 
 app.get('/launch', function(req, res, next) {
