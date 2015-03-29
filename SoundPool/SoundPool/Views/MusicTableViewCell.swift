@@ -17,6 +17,8 @@ class MusicTableViewCell: UITableViewCell {
     @IBOutlet private var numberOfLikes: UILabel!
     @IBOutlet private var numberOfDislikes: UILabel!
     @IBOutlet private var musicThumbnailImage: UIImageView!
+    @IBOutlet var likeButton: UIButton!
+    @IBOutlet var dislikeButton: UIButton!
     
     var music: Music! {
         didSet {
@@ -49,12 +51,14 @@ class MusicTableViewCell: UITableViewCell {
     // MARK: - User Interaction -
 
     @IBAction func didClickOnLikeButton() {
+        self.likeButton.enabled = false
         self.music.numberOfLikes!++
         self.numberOfLikes!.text = String(self.music.numberOfLikes!)
         NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": "like"])
     }
     
     @IBAction func didClickOnDislikeButton() {
+        self.dislikeButton.enabled = false
         self.music.numberOfDislikes!++
         self.numberOfDislikes.text = String(self.music.numberOfDislikes!)
         NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": "dislike"])

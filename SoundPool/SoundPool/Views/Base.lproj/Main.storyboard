@@ -154,6 +154,8 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="artistLabel" destination="bLO-nL-uG2" id="P4h-Kr-XeQ"/>
+                                            <outlet property="dislikeButton" destination="UqW-mE-Ecm" id="MO2-V4-S4Q"/>
+                                            <outlet property="likeButton" destination="Bjq-12-ybd" id="GFT-1B-tCp"/>
                                             <outlet property="musicNameLabel" destination="MIR-Sf-Ld1" id="OIM-zt-WoD"/>
                                             <outlet property="musicThumbnailImage" destination="twz-3E-6yx" id="tWC-V3-AbQ"/>
                                             <outlet property="numberOfDislikes" destination="4ZF-UQ-cDd" id="xO2-jB-lGW"/>
@@ -177,9 +179,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Choose your song " id="Mje-gX-RXi">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="tgD-pK-Nvw">
-                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="2pq-Xq-LYy">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

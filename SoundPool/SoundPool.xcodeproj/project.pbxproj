@@ -20,6 +20,13 @@
 		A5687F781AC70877008EFD2D /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5687F761AC70877008EFD2D /* Alamofire.swift */; };
 		A5687F791AC70877008EFD2D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5687F771AC70877008EFD2D /* SwiftyJSON.swift */; };
 		A5687F7C1AC72813008EFD2D /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5687F7B1AC72813008EFD2D /* NetworkManager.swift */; };
+		A5687F8B1AC789E2008EFD2D /* BFGradientCALayer.m in Sources */ = {isa = PBXBuildFile; fileRef = A5687F7F1AC789E2008EFD2D /* BFGradientCALayer.m */; };
+		A5687F8C1AC789E2008EFD2D /* BFRadialWaveHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A5687F811AC789E2008EFD2D /* BFRadialWaveHUD.m */; };
+		A5687F8D1AC789E2008EFD2D /* BFRadialWaveHUD.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5687F821AC789E2008EFD2D /* BFRadialWaveHUD.xib */; };
+		A5687F8E1AC789E2008EFD2D /* BFRadialWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5687F841AC789E2008EFD2D /* BFRadialWaveView.m */; };
+		A5687F8F1AC789E2008EFD2D /* UIColor+BFPaperColors.m in Sources */ = {isa = PBXBuildFile; fileRef = A5687F861AC789E2008EFD2D /* UIColor+BFPaperColors.m */; };
+		A5687F901AC789E2008EFD2D /* UIImage+KVNEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = A5687F881AC789E2008EFD2D /* UIImage+KVNEmpty.m */; };
+		A5687F911AC789E2008EFD2D /* UIImage+KVNImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = A5687F8A1AC789E2008EFD2D /* UIImage+KVNImageEffects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +57,20 @@
 		A5687F761AC70877008EFD2D /* Alamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alamofire.swift; sourceTree = "<group>"; };
 		A5687F771AC70877008EFD2D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		A5687F7B1AC72813008EFD2D /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkManager.swift; path = SoundPool/Managers/NetworkManager.swift; sourceTree = SOURCE_ROOT; };
+		A5687F7E1AC789E2008EFD2D /* BFGradientCALayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFGradientCALayer.h; sourceTree = "<group>"; };
+		A5687F7F1AC789E2008EFD2D /* BFGradientCALayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFGradientCALayer.m; sourceTree = "<group>"; };
+		A5687F801AC789E2008EFD2D /* BFRadialWaveHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFRadialWaveHUD.h; sourceTree = "<group>"; };
+		A5687F811AC789E2008EFD2D /* BFRadialWaveHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFRadialWaveHUD.m; sourceTree = "<group>"; };
+		A5687F821AC789E2008EFD2D /* BFRadialWaveHUD.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BFRadialWaveHUD.xib; sourceTree = "<group>"; };
+		A5687F831AC789E2008EFD2D /* BFRadialWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BFRadialWaveView.h; sourceTree = "<group>"; };
+		A5687F841AC789E2008EFD2D /* BFRadialWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BFRadialWaveView.m; sourceTree = "<group>"; };
+		A5687F851AC789E2008EFD2D /* UIColor+BFPaperColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BFPaperColors.h"; sourceTree = "<group>"; };
+		A5687F861AC789E2008EFD2D /* UIColor+BFPaperColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BFPaperColors.m"; sourceTree = "<group>"; };
+		A5687F871AC789E2008EFD2D /* UIImage+KVNEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNEmpty.h"; sourceTree = "<group>"; };
+		A5687F881AC789E2008EFD2D /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
+		A5687F891AC789E2008EFD2D /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
+		A5687F8A1AC789E2008EFD2D /* UIImage+KVNImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNImageEffects.m"; sourceTree = "<group>"; };
+		A5687F961AC78B94008EFD2D /* SoundPool-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoundPool-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +94,7 @@
 		A5687F311AC6D0A9008EFD2D = {
 			isa = PBXGroup;
 			children = (
+				A5687F961AC78B94008EFD2D /* SoundPool-Bridging-Header.h */,
 				A5687F3C1AC6D0A9008EFD2D /* SoundPool */,
 				A5687F521AC6D0A9008EFD2D /* SoundPoolTests */,
 				A5687F3B1AC6D0A9008EFD2D /* Products */,
@@ -175,6 +197,7 @@
 		A5687F751AC70831008EFD2D /* Librairies */ = {
 			isa = PBXGroup;
 			children = (
+				A5687F7D1AC789E2008EFD2D /* BFRadialWaveHUD */,
 				A5687F7A1AC70882008EFD2D /* Alamofire-SwiftyJSON */,
 			);
 			path = Librairies;
@@ -187,6 +210,26 @@
 				A5687F771AC70877008EFD2D /* SwiftyJSON.swift */,
 			);
 			path = "Alamofire-SwiftyJSON";
+			sourceTree = "<group>";
+		};
+		A5687F7D1AC789E2008EFD2D /* BFRadialWaveHUD */ = {
+			isa = PBXGroup;
+			children = (
+				A5687F7E1AC789E2008EFD2D /* BFGradientCALayer.h */,
+				A5687F7F1AC789E2008EFD2D /* BFGradientCALayer.m */,
+				A5687F801AC789E2008EFD2D /* BFRadialWaveHUD.h */,
+				A5687F811AC789E2008EFD2D /* BFRadialWaveHUD.m */,
+				A5687F821AC789E2008EFD2D /* BFRadialWaveHUD.xib */,
+				A5687F831AC789E2008EFD2D /* BFRadialWaveView.h */,
+				A5687F841AC789E2008EFD2D /* BFRadialWaveView.m */,
+				A5687F851AC789E2008EFD2D /* UIColor+BFPaperColors.h */,
+				A5687F861AC789E2008EFD2D /* UIColor+BFPaperColors.m */,
+				A5687F871AC789E2008EFD2D /* UIImage+KVNEmpty.h */,
+				A5687F881AC789E2008EFD2D /* UIImage+KVNEmpty.m */,
+				A5687F891AC789E2008EFD2D /* UIImage+KVNImageEffects.h */,
+				A5687F8A1AC789E2008EFD2D /* UIImage+KVNImageEffects.m */,
+			);
+			path = BFRadialWaveHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +313,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5687F451AC6D0A9008EFD2D /* Main.storyboard in Resources */,
+				A5687F8D1AC789E2008EFD2D /* BFRadialWaveHUD.xib in Resources */,
 				A5687F471AC6D0A9008EFD2D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,12 +334,18 @@
 			files = (
 				A5687F6E1AC6EDEF008EFD2D /* PersistencyManager.swift in Sources */,
 				A5687F661AC6E91F008EFD2D /* SplashViewController.swift in Sources */,
+				A5687F911AC789E2008EFD2D /* UIImage+KVNImageEffects.m in Sources */,
+				A5687F8F1AC789E2008EFD2D /* UIColor+BFPaperColors.m in Sources */,
 				A5687F7C1AC72813008EFD2D /* NetworkManager.swift in Sources */,
 				A5687F781AC70877008EFD2D /* Alamofire.swift in Sources */,
 				A5687F421AC6D0A9008EFD2D /* MusicsListViewController.swift in Sources */,
+				A5687F8B1AC789E2008EFD2D /* BFGradientCALayer.m in Sources */,
+				A5687F8E1AC789E2008EFD2D /* BFRadialWaveView.m in Sources */,
 				A5687F701AC6EEB1008EFD2D /* Facade.swift in Sources */,
 				A5687F741AC6F947008EFD2D /* MusicTableViewCell.swift in Sources */,
 				A5687F791AC70877008EFD2D /* SwiftyJSON.swift in Sources */,
+				A5687F8C1AC789E2008EFD2D /* BFRadialWaveHUD.m in Sources */,
+				A5687F901AC789E2008EFD2D /* UIImage+KVNEmpty.m in Sources */,
 				A5687F401AC6D0A9008EFD2D /* AppDelegate.swift in Sources */,
 				A5687F6A1AC6EB4B008EFD2D /* Music.swift in Sources */,
 			);
@@ -416,6 +466,7 @@
 				INFOPLIST_FILE = "SoundPool/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SoundPool-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -426,6 +477,7 @@
 				INFOPLIST_FILE = "SoundPool/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SoundPool-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -15,16 +15,17 @@ get the playlist from the server, etc..
 */
 class NetworkManager {
     
-    func blablo(musicIdentifier: String, action: String, completionHandler: (JSON?, NSError?) -> Void) {
-        request(.PUT, "http://www.monsite.fr/\(action)", parameters:["identifier": musicIdentifier])
+    func addNotation(musicIdentifier: String, action: String, completionHandler: (JSON?, NSError?) -> Void) {
+        request(.PUT, "http://localhost:3000/\(action)/\(musicIdentifier)")
             .validate()
-            .responseSwiftyJSON { (_, _, jsonResponse, error) in
+            .responseSwiftyJSON { ( request, _, jsonResponse, error) in
+                println("request = \(request)")
                 completionHandler(jsonResponse, error)
         }
     }
     
     func playlist(completionHandler: (JSON?, NSError?) -> Void) {
-        request(.GET, "http://private-92168-soundpoll.apiary-mock.com/playlist")
+        request(.GET, "http://localhost:3000/playlist")
             .validate()
             .responseSwiftyJSON { (_, _, jsonResponse, error) in
                 completionHandler(jsonResponse, error)

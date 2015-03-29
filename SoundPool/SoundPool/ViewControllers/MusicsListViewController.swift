@@ -19,6 +19,8 @@ class MusicsListViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "notationAdded:", name: kMusicNotationNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageDownloaded:", name: "DownloadedImageNotification", object: nil)
+        
+        self.navigationItem.hidesBackButton = true
 
         self.musicTableView.tableFooterView = UIView()
         self.musicTableView.tableHeaderView = UIView()
@@ -44,11 +46,17 @@ class MusicsListViewController: UIViewController {
     
     func notationAdded(notification: NSNotification) {
         println("received = \(notification.userInfo)")
+        Facade.sharedInstance().addNotation(notification.userInfo!["identifier"] as String, action: notification.userInfo!["action"] as String) { (jsonResponse, error) -> Void in
+            println("json response = \(jsonResponse)")            
+        }
     }
     
     // MARK: - User Interaction -
 
     @IBAction func refreshMusics(sender: UIBarButtonItem) {
+        
+        BFRadialWaveHUD.showInView(self.navigationController!.view, withMessage: "Mise à jours des musiques..")
+
         Facade.sharedInstance().playlist { (jsonPlaylist, error) -> Void in
             
             if error == nil && jsonPlaylist != nil && jsonPlaylist!.isOk() {
@@ -57,6 +65,7 @@ class MusicsListViewController: UIViewController {
                 let playlist = jsonPlaylist!["playlist"]["following"]
                 Facade.sharedInstance().addPlaylistFromJSON(playlist)
                 Facade.sharedInstance().fetchMusicsPictures()
+                BFRadialWaveHUD.sharedInstance().dismiss()
             }
         }
     }

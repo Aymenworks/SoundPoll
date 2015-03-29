@@ -45,14 +45,18 @@ public class Facade {
     
     // MARK: - Network -
     
-    func playlist(completionHandler: (JSON?, NSError?) -> Void) {
+    public func playlist(completionHandler: (JSON?, NSError?) -> Void) {
         self.networkManager.playlist(completionHandler)
+    }
+    
+    public func addNotation(musicIdentifier: String, action: String, completionHandler: (JSON?, NSError?) -> Void) {
+        self.networkManager.addNotation(musicIdentifier, action: action, completionHandler: completionHandler)
     }
     
     /**
     Will download all the music cover image from their url containted on our array of music
     */
-    func fetchMusicsPictures() {
+    public func fetchMusicsPictures() {
         self.networkManager.fetchMusicsPictures()
     }
     
