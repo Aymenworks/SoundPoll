@@ -23,13 +23,13 @@ var MUSICS_PATH = process.env.MUSICS_PATH || '/home/pi/musics/';
 
 var playlistPaths = {
   '1': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
-  '2': path.join(MUSICS_PATH, 'match0.wav'),
-  '3': path.join(MUSICS_PATH, 'beatboxing flute super mario brothers theme.m4a'),
-  '4': path.join(MUSICS_PATH, 'beep1.ogg'),
+  '2': path.join(MUSICS_PATH, '1-03 Old Love _ New Love.m4a'),
+  '3': path.join(MUSICS_PATH, '3005 - Childish Gambino.m4a'),
+  '4': path.join(MUSICS_PATH, '02 Walking On a Dream 1.m4a'),
   '5': path.join(MUSICS_PATH, 'badswap.wav'),
-  '6': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
-  '7': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
-  '8': path.join(MUSICS_PATH, 'beatboxing flute super mario brothers theme.m4a')
+  '6': path.join(MUSICS_PATH, '08 Men In Black 1.m4a'),
+  '7': path.join(MUSICS_PATH, 'beatboxing flute super mario brothers theme.m4a'),
+  '8': path.join(MUSICS_PATH, 'Things Went Down.m4a')
 };
 
 var db = { playlist: {
