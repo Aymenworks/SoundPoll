@@ -73,6 +73,7 @@ class MusicsListViewController: UIViewController {
                 Facade.sharedInstance().addCurrentMusicFromJSON(currentMusic)
                 Facade.sharedInstance().addPlaylistFromJSON(playlist)
                 Facade.sharedInstance().fetchMusicsPictures()
+                self.musicTableView.reloadData()
                 BFRadialWaveHUD.sharedInstance().dismiss()
             }
         }
