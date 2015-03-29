@@ -127,7 +127,7 @@ function findIn(arr, id) {
   return false;
 }
 
-app.get(/\/(dis)?like\/([^\/]+)/, function(req, res, next) {
+app.put(/\/(dis)?like\/([^\/]+)/, function(req, res, next) {
   var song,
     votes,
     like = req.path.match(/^\/like\/.*$/),
@@ -153,23 +153,25 @@ app.get(/\/(dis)?like\/([^\/]+)/, function(req, res, next) {
   return res.status(200).send();
 });
 
-app.get('/un(dis)?like/:id', function(req, res, next) {
+app.put(/\/un(dis)?like\/([^\/]+)/, function(req, res, next) {
   var song,
-    like = req.route.match(/^\/like\/.*$/),
-    votes = like ? voted[req.ip].liked : voted[req.ip].disliked,
-    id = req.params.id;
+    votes,
+    unlike = req.path.match(/^\/unlike\/.*$/),
+    id = req.params[1];
 
   voted[req.ip] = voted[req.ip] || {liked: [], disliked: []};
+  votes = unlike ? voted[req.ip].liked : voted[req.ip].disliked;
 
   song = findIn(db.playlist.following, id);
-  if (!song) return res.status(404).send('No such song: ' + req.params.id);
+  if (!song) return res.status(404).send('No such song: ' + id);
 
   if (!findIn(votes, id)) {
-    return res.status(403).send('Did not yet ' + (like ? '' : 'dis')
-        + 'liked song: ' + req.params.id);
+    return res.status(403).send('Did not yet ' + (unlike ? '' : 'dis')
+        + 'liked song: ' + id);
   }
 
-  if (likes) --song.likes;
+  console.log('1');
+  if (unlike) --song.likes;
   else --song.dislikes;
 
   for (var el, i = 0; el = votes[i]; ++i) {
