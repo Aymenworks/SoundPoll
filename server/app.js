@@ -47,15 +47,15 @@ var db = { playlist: {
       name: 'From Time',
       img: 'http:\/\/netstorage.metrolyrics.com\/albums\/1378405711drake-nothing-was-the-same-artwork-2.jpg',
       artist: 'Drake ft. Jhene Aiko',
-      likes: 55,
-      dislikes: 5
+      likes: 5,
+      dislikes: 2
     },
     {
       id: '2',
       name: 'Childish Gambino',
       img: 'http:\/\/cdn.pigeonsandplanes.com\/wp-content\/uploads\/2013\/12\/childish21-406x400.jpg',
       artist: null,
-      likes: 34,
+      likes: 3,
       dislikes: 2
     },
     {
@@ -63,40 +63,40 @@ var db = { playlist: {
       name: 'Price Tag',
       img: 'http:\/\/www.jessiejofficial.com\/files\/2014\/10\/jessie-j-who-you-are.jpg',
       artist: 'Jessie J ft. B\'o.B',
-      likes: 24,
-      dislikes: 2
+      likes: 3,
+      dislikes: 3
     },
     {
       id: '6',
       name: 'Hello World',
       img: 'http:\/\/medias.2kmusic.com\/uploads\/2014\/01\/03\/img-1388766574-23e5e9ed86c330e05fb8b20d0983cff8.jpg',
       artist: 'Kid Ink',
-      likes: 20,
-      dislikes: 3
+      likes: 3,
+      dislikes: 4
     },
     {
       id: '4',
       name: 'Doctor Who Theme',
       img: 'http:\/\/img4.wikia.nocookie.net\/__cb20130125153635\/supersmashbrosgmod\/images\/0\/09\/LuigiSMBW.jpg',
       artist: null,
-      likes: 13,
-      dislikes: 6
+      likes: 4,
+      dislikes: 5
     },
     {
       id: '5',
       name: 'Touch The Sky',
       img: 'http:\/\/upload.wikimedia.org\/wikipedia\/en\/7\/70\/Graduation_(album).jpg',
       artist: 'Kanye West',
-      likes: 1,
-      dislikes: 0
+      likes: 2,
+      dislikes: 3
     },
     {
       id: '8',
       name: 'Nightbook',
       img: null,
       artist: 'Ludovico Einaudo',
-      likes: 7,
-      dislikes: 20
+      likes: 3,
+      dislikes: 5
     }
   ]
 }};
