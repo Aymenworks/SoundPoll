@@ -27,7 +27,9 @@ class MusicTableViewCell: UITableViewCell {
             self.artistLabel.text = music.artist
             self.numberOfLikes.text = String(self.music.numberOfLikes!)
             self.numberOfDislikes.text = String(self.music.numberOfDislikes!)
-
+            
+            self.toggleLike()
+            
             if music.picture.thumbnail != nil {
                 self.musicThumbnailImage.image = music.picture.thumbnail
             }
@@ -35,7 +37,6 @@ class MusicTableViewCell: UITableViewCell {
             if music.picture.url == nil {
                 self.musicThumbnailImage.image = UIImage(named: "music")
             }
-            
         }
     }
     
@@ -48,20 +49,62 @@ class MusicTableViewCell: UITableViewCell {
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    
     // MARK: - User Interaction -
 
     @IBAction func didClickOnLikeButton() {
-        self.likeButton.enabled = false
-        self.music.numberOfLikes!++
+        
+        var action = ""
+
+        if self.music.likedByMe {
+            self.music.numberOfLikes!--
+            action = "unlike"
+
+        } else {
+            self.music.numberOfLikes!++
+            action = "like"
+        }
+        
+        self.music.likedByMe = !self.music.likedByMe
+
+        self.toggleLike()
         self.numberOfLikes!.text = String(self.music.numberOfLikes!)
-        NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": "like"])
+        NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": action])
     }
     
     @IBAction func didClickOnDislikeButton() {
-        self.dislikeButton.enabled = false
-        self.music.numberOfDislikes!++
+        
+        var action = ""
+        if music.dislikedByMe {
+            self.music.numberOfDislikes!--
+            action = "undislike"
+        } else {
+            self.music.numberOfDislikes!++
+            action = "dislike"
+        }
+        
+        self.music.dislikedByMe = !self.music.dislikedByMe
+        self.toggleLike()
         self.numberOfDislikes.text = String(self.music.numberOfDislikes!)
-        NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": "dislike"])
+        NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": action])
     }
+    
+    // MARK: - User Interface -
+    
+    func toggleLike() {
+        if self.music.likedByMe {
+            self.likeButton.setImage(UIImage(named: "close"), forState: .Normal)
+        } else {
+            self.likeButton.setImage(UIImage(named: "like"), forState: .Normal)
+        }
+        
+        if self.music.dislikedByMe {
+            self.dislikeButton.setImage(UIImage(named: "close"), forState: .Normal)
+        } else {
+            self.dislikeButton.setImage(UIImage(named: "dislike"), forState: .Normal)
+        }
+    }
+    
+
     
 }

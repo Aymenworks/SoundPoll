@@ -56,9 +56,16 @@ class PersistencyManager: NSCoding {
         }
     }
     
-    func addPlaylistFromJSON(jsonFollowingMusic: JSON) {
+    func addCurrentMusicFromJSON(currentMusic: JSON) {
         
         self.musics = []
+        
+        self.musics.append(Music(identifier: currentMusic["id"].string! , name: currentMusic["name"].string!, artist: currentMusic["artist"].string, pictureURL: currentMusic["img"].string, numberOfLikes: currentMusic["likes"].int, numberOfDislikes: currentMusic["dislikes"].int))
+        
+        self.saveMusics()
+    }
+    
+    func addPlaylistFromJSON(jsonFollowingMusic: JSON) {
         
         for (_, jsonMusic) in jsonFollowingMusic {
             self.musics.append(Music(identifier: jsonMusic["id"].string! , name: jsonMusic["name"].string!, artist: jsonMusic["artist"].string, pictureURL: jsonMusic["img"].string, numberOfLikes: jsonMusic["likes"].int, numberOfDislikes: jsonMusic["dislikes"].int))

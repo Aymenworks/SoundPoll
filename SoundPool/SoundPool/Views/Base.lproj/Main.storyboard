@@ -41,7 +41,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" sectionIndexMinimumDisplayRowCount="-1" rowHeight="95" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="QQa-XP-hxg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="164" width="320" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MusicCell" rowHeight="95" id="2q3-zG-pvz" customClass="MusicTableViewCell" customModule="SoundPool" customModuleProvider="target">
@@ -169,20 +169,88 @@
                                     <outlet property="delegate" destination="ObL-39-QKp" id="ecN-FT-5GJ"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o4Y-Cf-FVN">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="115"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tca-0p-bh3">
+                                        <rect key="frame" x="8" y="61" width="304" height="3"/>
+                                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="3" id="kQz-Lq-5BH"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="From Time - Nothing Was The " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="piZ-Md-RVy">
+                                        <rect key="frame" x="8" y="8" width="304" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="HRy-We-yl7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Drake ft. Jhene Aiko" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="212" translatesAutoresizingMaskIntoConstraints="NO" id="cMS-kw-Awo">
+                                        <rect key="frame" x="8" y="29" width="304" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="iUT-S3-Ent"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cMS-kw-Awo" secondAttribute="trailing" constant="8" id="0Eh-Y4-djF"/>
+                                    <constraint firstItem="piZ-Md-RVy" firstAttribute="top" secondItem="o4Y-Cf-FVN" secondAttribute="top" constant="8" id="Csh-uc-Uc3"/>
+                                    <constraint firstAttribute="trailing" secondItem="tca-0p-bh3" secondAttribute="trailing" constant="8" id="DkG-Me-y0S"/>
+                                    <constraint firstItem="tca-0p-bh3" firstAttribute="leading" secondItem="o4Y-Cf-FVN" secondAttribute="leading" constant="8" id="NXi-k8-5uH"/>
+                                    <constraint firstAttribute="height" constant="115" id="cg6-g4-n8e"/>
+                                    <constraint firstItem="cMS-kw-Awo" firstAttribute="top" secondItem="piZ-Md-RVy" secondAttribute="bottom" constant="1" id="l6X-UX-F4w"/>
+                                    <constraint firstItem="piZ-Md-RVy" firstAttribute="leading" secondItem="o4Y-Cf-FVN" secondAttribute="leading" constant="8" id="mTZ-vf-Q3D"/>
+                                    <constraint firstAttribute="trailing" secondItem="piZ-Md-RVy" secondAttribute="trailing" constant="8" id="n9z-nc-ov0"/>
+                                    <constraint firstItem="cMS-kw-Awo" firstAttribute="leading" secondItem="o4Y-Cf-FVN" secondAttribute="leading" constant="8" id="tfE-Tx-kn2"/>
+                                    <constraint firstItem="tca-0p-bh3" firstAttribute="top" secondItem="cMS-kw-Awo" secondAttribute="bottom" constant="8" id="wKY-AE-69W"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drake" translatesAutoresizingMaskIntoConstraints="NO" id="jPX-Ws-jBK">
+                                <rect key="frame" x="125" y="76" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="sVh-7X-1ah"/>
+                                    <constraint firstAttribute="width" constant="80" id="tfV-5z-uq3"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="o4Y-Cf-FVN" secondAttribute="trailing" id="2QC-MN-BKE"/>
+                            <constraint firstItem="QQa-XP-hxg" firstAttribute="top" secondItem="jPX-Ws-jBK" secondAttribute="bottom" constant="8" id="4TT-3E-H9w"/>
+                            <constraint firstItem="o4Y-Cf-FVN" firstAttribute="leading" secondItem="ocj-fD-9B9" secondAttribute="leading" id="BpX-uY-1Dc"/>
+                            <constraint firstItem="jPX-Ws-jBK" firstAttribute="centerX" secondItem="o4Y-Cf-FVN" secondAttribute="centerX" constant="5" id="DyV-Kb-cML"/>
                             <constraint firstItem="QQa-XP-hxg" firstAttribute="leading" secondItem="ocj-fD-9B9" secondAttribute="leading" id="LxB-3v-j6n"/>
-                            <constraint firstItem="QQa-XP-hxg" firstAttribute="top" secondItem="d61-ZL-pnu" secondAttribute="bottom" id="hKT-xZ-45J"/>
+                            <constraint firstItem="jPX-Ws-jBK" firstAttribute="centerY" secondItem="o4Y-Cf-FVN" secondAttribute="centerY" constant="58.5" id="fMa-4D-o2c"/>
+                            <constraint firstItem="QQa-XP-hxg" firstAttribute="top" secondItem="d61-ZL-pnu" secondAttribute="bottom" constant="154" id="hKT-xZ-45J"/>
                             <constraint firstItem="Jpk-UG-1Dx" firstAttribute="top" secondItem="QQa-XP-hxg" secondAttribute="bottom" id="jGU-9c-bxx"/>
                             <constraint firstAttribute="trailing" secondItem="QQa-XP-hxg" secondAttribute="trailing" id="saq-mE-EYd"/>
+                            <constraint firstItem="o4Y-Cf-FVN" firstAttribute="top" secondItem="d61-ZL-pnu" secondAttribute="bottom" id="ufj-Fp-FBT"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="hKT-xZ-45J"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Choose your song " id="Mje-gX-RXi">
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="2pq-Xq-LYy">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
-                                <action selector="refreshMusics:" destination="ObL-39-QKp" id="QQk-KS-9DL"/>
+                                <action selector="refreshMusics:" destination="ObL-39-QKp" id="flm-a5-57Y"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -192,6 +260,9 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="automaticallyAdjustsScrollViewInsets" value="NO"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="currentMusicArtist" destination="cMS-kw-Awo" id="Xc4-Tc-Afo"/>
+                        <outlet property="currentMusicCoverImage" destination="jPX-Ws-jBK" id="boo-et-ySh"/>
+                        <outlet property="currentMusicTitle" destination="piZ-Md-RVy" id="zKB-PO-dyt"/>
                         <outlet property="musicTableView" destination="QQa-XP-hxg" id="cN8-0g-vHL"/>
                     </connections>
                 </viewController>
@@ -398,6 +469,7 @@
         <image name="artist" width="20" height="22"/>
         <image name="cover" width="474" height="475"/>
         <image name="dislike" width="625" height="549"/>
+        <image name="drake" width="192" height="192"/>
         <image name="like" width="596" height="548"/>
         <image name="menu" width="32" height="32"/>
         <image name="music" width="457" height="467"/>
