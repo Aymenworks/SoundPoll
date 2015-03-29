@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var play = require('play').Play();
-play.usePlayer(process.env.PLAYER || 'mplayer');
 
 var app = express();
 
@@ -23,14 +22,14 @@ var voted = {
 var MUSICS_PATH = process.env.MUSICS_PATH || '/home/pi/musics/';
 
 var playlistPaths = {
-	'1': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
-	'2': path.join(MUSICS_PATH, 'match0.wav'),
-  '3': path.join(MUSICS_PATH, 'beatboxing flute super mario brothers theme.m4a'),
-  '4': path.join(MUSICS_PATH, 'beep1.ogg'),
+  '1': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
+  '2': path.join(MUSICS_PATH, '1-03 Old Love _ New Love.m4a'),
+  '3': path.join(MUSICS_PATH, '3005 - Childish Gambino.m4a'),
+  '4': path.join(MUSICS_PATH, '02 Walking On a Dream 1.m4a'),
   '5': path.join(MUSICS_PATH, 'badswap.wav'),
-  '6': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
-  '7': path.join(MUSICS_PATH, 'Epic Sax Guy _.m4a'),
-  '8': path.join(MUSICS_PATH, 'beatboxing flute super mario brothers theme.m4a')
+  '6': path.join(MUSICS_PATH, '08 Men In Black 1.m4a'),
+  '7': path.join(MUSICS_PATH, 'beatboxing flute super mario brothers theme.m4a'),
+  '8': path.join(MUSICS_PATH, 'Things Went Down.m4a')
 };
 
 var db = { playlist: {
@@ -47,15 +46,15 @@ var db = { playlist: {
       name: 'From Time',
       img: 'http:\/\/netstorage.metrolyrics.com\/albums\/1378405711drake-nothing-was-the-same-artwork-2.jpg',
       artist: 'Drake ft. Jhene Aiko',
-      likes: 55,
-      dislikes: 5
+      likes: 5,
+      dislikes: 2
     },
     {
       id: '2',
       name: 'Childish Gambino',
       img: 'http:\/\/cdn.pigeonsandplanes.com\/wp-content\/uploads\/2013\/12\/childish21-406x400.jpg',
       artist: null,
-      likes: 34,
+      likes: 3,
       dislikes: 2
     },
     {
@@ -63,40 +62,40 @@ var db = { playlist: {
       name: 'Price Tag',
       img: 'http:\/\/www.jessiejofficial.com\/files\/2014\/10\/jessie-j-who-you-are.jpg',
       artist: 'Jessie J ft. B\'o.B',
-      likes: 24,
-      dislikes: 2
+      likes: 3,
+      dislikes: 3
     },
     {
       id: '6',
       name: 'Hello World',
       img: 'http:\/\/medias.2kmusic.com\/uploads\/2014\/01\/03\/img-1388766574-23e5e9ed86c330e05fb8b20d0983cff8.jpg',
       artist: 'Kid Ink',
-      likes: 20,
-      dislikes: 3
+      likes: 3,
+      dislikes: 4
     },
     {
       id: '4',
       name: 'Doctor Who Theme',
       img: 'http:\/\/img4.wikia.nocookie.net\/__cb20130125153635\/supersmashbrosgmod\/images\/0\/09\/LuigiSMBW.jpg',
       artist: null,
-      likes: 13,
-      dislikes: 6
+      likes: 4,
+      dislikes: 5
     },
     {
       id: '5',
       name: 'Touch The Sky',
       img: 'http:\/\/upload.wikimedia.org\/wikipedia\/en\/7\/70\/Graduation_(album).jpg',
       artist: 'Kanye West',
-      likes: 1,
-      dislikes: 0
+      likes: 2,
+      dislikes: 3
     },
     {
       id: '8',
       name: 'Nightbook',
       img: null,
       artist: 'Ludovico Einaudo',
-      likes: 7,
-      dislikes: 20
+      likes: 3,
+      dislikes: 5
     }
   ]
 }};
@@ -108,31 +107,37 @@ function sortSongs(s1, s2) {
       (score1 < score2 ? 1 : -1); // Sort in descending score
 }
 
-function playNextSong(next) {
+function handlePlaysound() {
+  console.log('launching song');
+  db.playlist.current.playing = true;
+  play.sound(playlistPaths[db.playlist.current.id], handlePlaysound);
+
   console.log('choosing next song');
   db.playlist.current = db.playlist.following[0];
   db.playlist.following.splice(0, 1);  // Removes the first song
 
-  if (0 === db.length) return next();
-
-  console.log('launching next song');
-  play.sound(playlistPaths[db.playlist.current.id], function () {
-    console.log('finished');
-    playNextSong(next);
-  });
+  if (0 === db.playlist.following.length) return;
 }
 
 app.get('/playlist', function(req, res, next) {
-	res.status(200).json(db);
+  voted[req.ip] = voted[req.ip] || {liked: [], disliked: []};
+  var liked = voted[req.ip].liked,
+    disliked = voted[req.ip].disliked;
+
+  for (var id in liked) {
+    var song = db.playlist.following[id];
+    song.hasLiked = true;
+  }
+  for (var id in disliked) {
+    var song = db.playlist.following[id];
+    song.hasDisliked = true;
+  }
+  res.status(200).json(db);
 });
 
 app.get('/launch', function(req, res, next) {
   if (!db.playlist.current.playing) {
-    console.log('first');
-    play.sound(playlistPaths[db.playlist.current.id], function () {
-      console.log('first done');
-      playNextSong(next);
-    });
+    handlePlaysound();
   }
   res.status(200).send('ok');
 });
