@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var play = require('play').Play();
-play.usePlayer(process.env.PLAYER || 'afplay');
+play.usePlayer(process.env.PLAYER || 'mplayer');
 
 var app = express();
 
