@@ -6,35 +6,43 @@
 //  Copyright (c) 2015 Rebouh Aymen. All rights reserved.
 //
 
-import Foundation
 import UIKit.UIImage
 
 public class Music: NSObject {
     
+    let identifier: String!
     let name: String!
     let artist: String?
-    let thumbnail: UIImage?
-    let numberOfLike: Int!
-    let numberOfDislike: Int!
+    var picture: (url: String?, thumbnail: UIImage?) {
+        didSet {
+            if picture.url == nil {
+                self.picture.thumbnail = nil
+            }
+        }
+    }
+    var numberOfLikes: Int!
+    var numberOfDislikes: Int!
     
-    init(name: String, artist: String?, withMusicThumbnail thumbnail: UIImage?) {
+    init(identifier: String, name: String, artist: String?, pictureURL: String?, numberOfLikes: Int?, numberOfDislikes: Int?) {
         super.init()
+        self.identifier = identifier
         self.name = name
         self.artist = artist
-        self.thumbnail = thumbnail
-        self.numberOfLike = 18
-        self.numberOfDislike = 18
+        self.picture.url = pictureURL
+        self.numberOfLikes = numberOfLikes == nil ? 0 : numberOfLikes!
+        self.numberOfDislikes = numberOfDislikes == nil ? 0 : numberOfDislikes!
     }
     
     required public init(coder aDecoder: NSCoder) {
         super.init()
+        self.identifier = aDecoder.decodeObjectForKey("identifier") as String
         self.name = aDecoder.decodeObjectForKey("name") as String
         self.artist = aDecoder.decodeObjectForKey("artist") as? String
-        self.numberOfLike = aDecoder.decodeIntegerForKey("numberOfLike")
-        self.numberOfDislike = aDecoder.decodeIntegerForKey("numberOfDislike")
+        self.numberOfLikes = aDecoder.decodeIntegerForKey("numberOfLike")
+        self.numberOfDislikes = aDecoder.decodeIntegerForKey("numberOfDislike")
         
         if let thumbnailData = aDecoder.decodeObjectForKey("thumbnail") as? NSData {
-            self.thumbnail = UIImage(data: thumbnailData)
+            self.picture.thumbnail = UIImage(data: thumbnailData)
         }
     }
 }
@@ -42,17 +50,24 @@ public class Music: NSObject {
 extension Music: NSCoding {
   
     public func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.identifier, forKey: "identifier")
         aCoder.encodeObject(self.name, forKey: "name")
-        aCoder.encodeInteger(self.numberOfLike, forKey: "numberOfLike")
-        aCoder.encodeInteger(self.numberOfDislike, forKey: "numberOfDislike")
+        
+        aCoder.encodeInteger(self.numberOfLikes!, forKey: "numberOfLike")
+        aCoder.encodeInteger(self.numberOfDislikes!, forKey: "numberOfDislike")
         
         if self.artist != nil {
             aCoder.encodeObject(self.artist!, forKey: "artist")
         }
         
-        if self.thumbnail != nil {
-            aCoder.encodeObject(UIImagePNGRepresentation(self.thumbnail!), forKey: "thumbnail")
+        if self.picture.thumbnail != nil {
+            aCoder.encodeObject(UIImagePNGRepresentation(self.picture.thumbnail!), forKey: "thumbnail")
         }
     }
 }
 
+extension Music: Printable {
+    override public var description: String {
+        return "name = \(self.name), pictureUrl = \(self.picture.url) and numberOfDislikes = \(self.numberOfDislikes)"
+    }
+}

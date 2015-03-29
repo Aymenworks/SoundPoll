@@ -12,22 +12,57 @@ class MusicsListViewController: UIViewController {
 
     @IBOutlet var musicTableView: UITableView!
     
+    // MARK: - Licecycle -
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "notationAdded:", name: kMusicNotationNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageDownloaded:", name: "DownloadedImageNotification", object: nil)
+
         self.musicTableView.tableFooterView = UIView()
         self.musicTableView.tableHeaderView = UIView()
-        Facade.sharedInstance().addMusicWithName("From Time", artist: "Drake ft. Jhene Aiko", withMusicThumbnail: UIImage(named: "drake"))
-        Facade.sharedInstance().addMusicWithName("Spotless mind", artist: "Jhene Aiko", withMusicThumbnail: UIImage(named: "jhene"))
-        Facade.sharedInstance().addMusicWithName("Price Tag", artist: "Jessie J ft. B.o.B", withMusicThumbnail: UIImage(named: "jessiej"))
-        
-        Facade.sharedInstance().saveMusics()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: kMusicNotationNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "DownloadImageNotification", object: nil)
+
+    }
+    
+    // MARK: - NSNotification -
+    
+    func imageDownloaded(notification: NSNotification) {
+        println("FINISHED")
+        self.musicTableView.reloadData()
+    }
+    
+    func notationAdded(notification: NSNotification) {
+        println("received = \(notification.userInfo)")
+    }
+    
+    // MARK: - User Interaction -
+
+    @IBAction func refreshMusics(sender: UIBarButtonItem) {
+        Facade.sharedInstance().playlist { (jsonPlaylist, error) -> Void in
+            
+            if error == nil && jsonPlaylist != nil && jsonPlaylist!.isOk() {
+                
+                println("jsonPlaylist aymen = \(jsonPlaylist)")
+                let playlist = jsonPlaylist!["playlist"]["following"]
+                Facade.sharedInstance().addPlaylistFromJSON(playlist)
+                Facade.sharedInstance().fetchMusicsPictures()
+            }
+        }
+    }
+    
 }
+
 
 // MARK: - UITableView Delegate -
 
@@ -46,8 +81,9 @@ extension MusicsListViewController: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "MusicCell") as? MusicTableViewCell
         }
         
-        cell!.music = Facade.sharedInstance().musics()[indexPath.row]
+        println("cellForRowAtIndexPath pourtant count == \(Facade.sharedInstance().musics().count)")
 
+        cell!.music = Facade.sharedInstance().musics()[indexPath.row]
         return cell!
     }
     

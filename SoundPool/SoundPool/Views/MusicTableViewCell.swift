@@ -8,31 +8,56 @@
 
 import UIKit
 
+let kMusicNotationNotification = "MusicNotationNotification"
+
 class MusicTableViewCell: UITableViewCell {
 
-    @IBOutlet var musicNameLabel: UILabel!
-    @IBOutlet var artistLabel: UILabel!
-    @IBOutlet var numberOfLike: UILabel!
-    @IBOutlet var numberOfDislike: UILabel!
-    @IBOutlet var musicThumbnailImage: UIImageView!
+    @IBOutlet private var musicNameLabel: UILabel!
+    @IBOutlet private var artistLabel: UILabel!
+    @IBOutlet private var numberOfLikes: UILabel!
+    @IBOutlet private var numberOfDislikes: UILabel!
+    @IBOutlet private var musicThumbnailImage: UIImageView!
     
     var music: Music! {
         didSet {
+            println("music cell = \(music) ")
             self.musicNameLabel.text = music.name
             self.artistLabel.text = music.artist
-            self.musicThumbnailImage.image = music.thumbnail
+            self.numberOfLikes.text = String(self.music.numberOfLikes!)
+            self.numberOfDislikes.text = String(self.music.numberOfDislikes!)
+
+            if music.picture.thumbnail != nil {
+                self.musicThumbnailImage.image = music.picture.thumbnail
+            }
+            
+            if music.picture.url == nil {
+                self.musicThumbnailImage.image = UIImage(named: "music")
+            }
+            
         }
     }
     
+    // MARK: - Lifecycle -
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
+    // MARK: - User Interaction -
 
+    @IBAction func didClickOnLikeButton() {
+        self.music.numberOfLikes!++
+        self.numberOfLikes!.text = String(self.music.numberOfLikes!)
+        NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": "like"])
+    }
+    
+    @IBAction func didClickOnDislikeButton() {
+        self.music.numberOfDislikes!++
+        self.numberOfDislikes.text = String(self.music.numberOfDislikes!)
+        NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": "dislike"])
+    }
+    
 }

@@ -13,6 +13,17 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Facade.sharedInstance().playlist { (jsonPlaylist, error) -> Void in
+            
+            if error == nil && jsonPlaylist != nil && jsonPlaylist!.isOk() {
+                
+                let playlist = jsonPlaylist!["playlist"]["following"]
+                Facade.sharedInstance().addPlaylistFromJSON(playlist)
+                Facade.sharedInstance().fetchMusicsPictures()
+
+            }
+        }
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64((2 * NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.performSegueWithIdentifier("goToMusicsListViewFromSplashView", sender: self)
         }

@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Rebouh Aymen. All rights reserved.
 //
 
-import Foundation
 import UIKit.UIImage
 
 class PersistencyManager: NSCoding {
@@ -14,10 +13,6 @@ class PersistencyManager: NSCoding {
     private(set) var musics: [Music]
     
     // MARK: - Lifecycle -
-
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.musics, forKey: "musics")
-    }
     
     required init(coder aDecoder: NSCoder) {
         self.musics = aDecoder.decodeObjectForKey("musics") as [Music]
@@ -34,6 +29,12 @@ class PersistencyManager: NSCoding {
                 self.musics = unarchivedMusics
             }
         }
+    }
+    
+    // MARK: - NSCoding delegate -
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(self.musics, forKey: "musics")
     }
     
     // MARK: - Music persistency -
@@ -55,7 +56,18 @@ class PersistencyManager: NSCoding {
         }
     }
     
-    func addMusicWithName(name: String, artist: String?, withMusicThumbnail image: UIImage?) {
-        self.musics.append(Music(name: name, artist: artist, withMusicThumbnail:image))
+    func addPlaylistFromJSON(jsonFollowingMusic: JSON) {
+        
+        self.musics = []
+        
+        for (_, jsonMusic) in jsonFollowingMusic {
+            self.musics.append(Music(identifier: jsonMusic["id"].string! , name: jsonMusic["name"].string!, artist: jsonMusic["artist"].string, pictureURL: jsonMusic["img"].string, numberOfLikes: jsonMusic["likes"].int, numberOfDislikes: jsonMusic["dislikes"].int))
+        }
+        
+        self.saveMusics()
+    }
+    
+    func addMusicWithIdentifier(identifier: String, name: String, artist: String?, pictureURL: String?, numberOfLikes: Int?, numberOfDislikes: Int?) {
+        self.musics.append(Music(identifier: identifier, name: name, artist: artist, pictureURL: pictureURL, numberOfLikes: numberOfLikes, numberOfDislikes: numberOfDislikes))
     }
 }
