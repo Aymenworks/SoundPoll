@@ -15,6 +15,13 @@ get the playlist from the server, etc..
 */
 class NetworkManager {
     
+    /**
+    <#Description#>
+    
+    :param: musicIdentifier   <#musicIdentifier description#>
+    :param: action            <#action description#>
+    :param: completionHandler <#completionHandler description#>
+    */
     func addNotation(musicIdentifier: String, action: String, completionHandler: (JSON?, NSError?) -> Void) {
         request(.PUT, "http://192.168.3.24:3000/\(action)/\(musicIdentifier)")
             .validate()
@@ -24,6 +31,11 @@ class NetworkManager {
         }
     }
     
+    /**
+    <#Description#>
+    
+    :param: completionHandler <#completionHandler description#>
+    */
     func playlist(completionHandler: (JSON?, NSError?) -> Void) {
         request(.GET, "http://192.168.3.24:3000/playlist")
             .validate()

@@ -8,6 +8,10 @@
 
 import UIKit.UIImage
 
+/**
+The Facade pattern. So we can use more easily the complex submodules
+that are Location, Network, Data persistency with a sample and reusable API.
+*/
 public class Facade {
     
     lazy private var persistencyManager = PersistencyManager()
@@ -27,32 +31,72 @@ public class Facade {
     
     // MARK: - Music persistency -
 
+    /**
+    <#Description#>
+    
+    :param: identifier       <#identifier description#>
+    :param: name             <#name description#>
+    :param: artist           <#artist description#>
+    :param: pictureURL       <#pictureURL description#>
+    :param: numberOfLikes    <#numberOfLikes description#>
+    :param: numberOfDislikes <#numberOfDislikes description#>
+    */
     public func addMusicWithIdentifier(identifier: String, name: String, artist: String?, pictureURL: String?, numberOfLikes: Int?, numberOfDislikes: Int?) {
         self.persistencyManager.addMusicWithIdentifier(identifier, name: name, artist: artist, pictureURL: pictureURL, numberOfLikes: numberOfLikes, numberOfDislikes: numberOfDislikes)
     }
     
+    /**
+    <#Description#>
+    
+    :param: json <#json description#>
+    */
     public func addCurrentMusicFromJSON(json: JSON) {
         self.persistencyManager.addCurrentMusicFromJSON(json)
     }
     
+    /**
+    <#Description#>
+    
+    :param: json <#json description#>
+    */
     public func addPlaylistFromJSON(json: JSON) {
         self.persistencyManager.addPlaylistFromJSON(json)
     }
     
+    /**
+    <#Description#>
+    
+    :returns: <#return value description#>
+    */
     public func musics() -> [Music] {
         return self.persistencyManager.musics
     }
     
+    /**
+    <#Description#>
+    */
     public func saveMusics() {
         self.persistencyManager.saveMusics()
     }
     
     // MARK: - Network -
     
+    /**
+    <#Description#>
+    
+    :param: completionHandler <#completionHandler description#>
+    */
     public func playlist(completionHandler: (JSON?, NSError?) -> Void) {
         self.networkManager.playlist(completionHandler)
     }
     
+    /**
+    <#Description#>
+    
+    :param: musicIdentifier   <#musicIdentifier description#>
+    :param: action            <#action description#>
+    :param: completionHandler <#completionHandler description#>
+    */
     public func addNotation(musicIdentifier: String, action: String, completionHandler: (JSON?, NSError?) -> Void) {
         self.networkManager.addNotation(musicIdentifier, action: action, completionHandler: completionHandler)
     }

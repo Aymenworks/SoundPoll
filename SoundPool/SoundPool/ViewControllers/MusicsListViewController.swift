@@ -30,7 +30,7 @@ class MusicsListViewController: UIViewController {
         self.currentMusicTitle.text = Facade.sharedInstance().musics().first?.name
         self.currentMusicArtist.text = Facade.sharedInstance().musics().first?.artist
         
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerReloadData", userInfo: nil, repeats: true)
+     //   NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerReloadData", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,9 +52,8 @@ class MusicsListViewController: UIViewController {
     }
     
     func notationAdded(notification: NSNotification) {
-        println("received = \(notification.userInfo)")
         Facade.sharedInstance().addNotation(notification.userInfo!["identifier"] as String, action: notification.userInfo!["action"] as String) { (jsonResponse, error) -> Void in
-            println("json response = \(jsonResponse)")
+            println("json response  notationAdded= \(jsonResponse)")
             self.refreshMusics(self)
         }
     }
@@ -69,7 +68,6 @@ class MusicsListViewController: UIViewController {
             
             if error == nil && jsonPlaylist != nil && jsonPlaylist!.isOk() {
                 
-                println("jsonPlaylist aymen = \(jsonPlaylist)")
                 let playlist = jsonPlaylist!["playlist"]["following"]
                 let currentMusic = jsonPlaylist!["playlist"]["current"]
                 Facade.sharedInstance().addCurrentMusicFromJSON(currentMusic)
@@ -118,8 +116,6 @@ extension MusicsListViewController: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "MusicCell") as? MusicTableViewCell
         }
         
-        println("cellForRowAtIndexPath \(indexPath.row), pourtant count == \(Facade.sharedInstance().musics().count)")
-
         cell!.music = Facade.sharedInstance().musics()[indexPath.row + 1 < Facade.sharedInstance().musics().count ? indexPath.row+1: indexPath.row]
         return cell!
     }

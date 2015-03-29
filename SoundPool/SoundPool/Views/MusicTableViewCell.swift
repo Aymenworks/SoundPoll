@@ -22,7 +22,6 @@ class MusicTableViewCell: UITableViewCell {
     
     var music: Music! {
         didSet {
-            println("music cell = \(music) ")
             self.musicNameLabel.text = music.name
             self.artistLabel.text = music.artist
             self.numberOfLikes.text = String(self.music.numberOfLikes!)
@@ -66,7 +65,6 @@ class MusicTableViewCell: UITableViewCell {
         }
         
         self.music.likedByMe = !self.music.likedByMe
-
         self.toggleLike()
         self.numberOfLikes!.text = String(self.music.numberOfLikes!)
         NSNotificationCenter.defaultCenter().postNotificationName(kMusicNotationNotification, object: self, userInfo: ["identifier": music.identifier!, "action": action])
@@ -90,6 +88,7 @@ class MusicTableViewCell: UITableViewCell {
     }
     
     // MARK: - User Interface -
+    
     
     func toggleLike() {
         if self.music.likedByMe {
