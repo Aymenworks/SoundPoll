@@ -28,7 +28,7 @@ class MusicsListViewController: UIViewController {
         self.musicTableView.tableHeaderView = UIView()
         self.reloadCurrentMusicUI()
         
-        NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: "timerReloadData", userInfo: nil, repeats: true)
+      //  NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: "timerReloadData", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {

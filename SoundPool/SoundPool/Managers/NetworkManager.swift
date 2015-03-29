@@ -63,7 +63,6 @@ class NetworkManager {
         for music in Facade.sharedInstance().musics() {
             if let pictureUrl = music.picture.url {
                 Facade.sharedInstance().pictureWithURL(pictureUrl) { image -> Void in
-                    NSNotificationCenter.defaultCenter().postNotificationName("DownloadedImageNotification", object: nil)
                     music.picture.thumbnail = image
                     numberOfImagesDownloaded++
                     // If we have downloaded all the pictures, we save it.
