@@ -247,6 +247,12 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Choose your song " id="Mje-gX-RXi">
+                        <barButtonItem key="leftBarButtonItem" systemItem="play" id="kHq-hz-RCu">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="startMusic:" destination="ObL-39-QKp" id="NVw-BM-4KG"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="2pq-Xq-LYy">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>

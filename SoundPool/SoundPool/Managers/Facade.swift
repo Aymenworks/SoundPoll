@@ -90,6 +90,10 @@ public class Facade {
         self.networkManager.playlist(completionHandler)
     }
     
+    public func startMusic(completionHandler: (JSON?, NSError?) -> Void) {
+        self.networkManager.startMusic(completionHandler)
+    }
+    
     /**
     <#Description#>
     

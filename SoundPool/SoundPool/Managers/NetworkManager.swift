@@ -44,6 +44,14 @@ class NetworkManager {
         }
     }
     
+    func startMusic(completionHandler: (JSON?, NSError?) -> Void) {
+        request(.GET, "http://192.168.3.24:3000/launch")
+            .validate()
+            .responseSwiftyJSON { (_, _, jsonResponse, error) in
+                completionHandler(jsonResponse, error)
+        }
+    }
+    
     /**
     <#Description#>
     */

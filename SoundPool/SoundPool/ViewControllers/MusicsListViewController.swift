@@ -26,11 +26,9 @@ class MusicsListViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
         self.musicTableView.tableFooterView = UIView()
         self.musicTableView.tableHeaderView = UIView()
-        self.currentMusicCoverImage.image = Facade.sharedInstance().musics().first?.picture.thumbnail
-        self.currentMusicTitle.text = Facade.sharedInstance().musics().first?.name
-        self.currentMusicArtist.text = Facade.sharedInstance().musics().first?.artist
+        self.reloadCurrentMusicUI()
         
-     //   NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerReloadData", userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "timerReloadData", userInfo: nil, repeats: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +47,7 @@ class MusicsListViewController: UIViewController {
     func imageDownloaded(notification: NSNotification) {
         println("FINISHED")
         self.musicTableView.reloadData()
+        self.reloadCurrentMusicUI()
     }
     
     func notationAdded(notification: NSNotification) {
@@ -74,6 +73,8 @@ class MusicsListViewController: UIViewController {
                 Facade.sharedInstance().addPlaylistFromJSON(playlist)
                 Facade.sharedInstance().fetchMusicsPictures()
                 self.musicTableView.reloadData()
+                self.reloadCurrentMusicUI()
+                self.currentMusicCoverImage.image = Facade.sharedInstance().musics().first?.picture.thumbnail
                 BFRadialWaveHUD.sharedInstance().dismiss()
             }
         }
@@ -92,9 +93,26 @@ class MusicsListViewController: UIViewController {
                 Facade.sharedInstance().addPlaylistFromJSON(playlist)
                 Facade.sharedInstance().fetchMusicsPictures()
                 self.musicTableView.reloadData()
+                self.reloadCurrentMusicUI()
             }
         }
 
+    }
+    
+    @IBAction func startMusic(sender: UIBarButtonItem) {
+        Facade.sharedInstance().startMusic { (json, error) -> Void in
+            println("json start music = \(json)")
+        }
+    }
+    
+    
+    // MARK: - User Interface -
+    func reloadCurrentMusicUI() {
+        if self.currentMusicCoverImage.image != Facade.sharedInstance().musics().first?.picture.thumbnail {
+            self.currentMusicCoverImage.image = Facade.sharedInstance().musics().first?.picture.thumbnail
+        }
+        self.currentMusicTitle.text = Facade.sharedInstance().musics().first?.name
+        self.currentMusicArtist.text = Facade.sharedInstance().musics().first?.artist
     }
     
 }
