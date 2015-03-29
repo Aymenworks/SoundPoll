@@ -120,12 +120,22 @@ function handlePlaysound() {
 }
 
 app.get('/playlist', function(req, res, next) {
+  var liked = voted[req.ip].liked,
+    disliked = voted[req.ip].disliked;
+
+  for (var id in liked) {
+    var song = db.playlist.following[id];
+    song.hasLiked = true;
+  }
+  for (var id in liked) {
+    var song = db.playlist.following[id];
+    song.hasDisliked = true;
+  }
 	res.status(200).json(db);
 });
 
 app.get('/launch', function(req, res, next) {
   if (!db.playlist.current.playing) {
-    console.log('first');
     handlePlaysound();
   }
   res.status(200).send('ok');
