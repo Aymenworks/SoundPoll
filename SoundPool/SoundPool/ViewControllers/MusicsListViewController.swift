@@ -11,6 +11,9 @@ import UIKit
 class MusicsListViewController: UIViewController {
 
     @IBOutlet var musicTableView: UITableView!
+    @IBOutlet var currentMusicTitle: UILabel!
+    @IBOutlet var currentMusicCoverImage: UIImageView!
+    @IBOutlet var currentMusicArtist: UILabel!
     
     // MARK: - Licecycle -
 
@@ -19,11 +22,18 @@ class MusicsListViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "notationAdded:", name: kMusicNotationNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageDownloaded:", name: "DownloadedImageNotification", object: nil)
-        
+
         self.navigationItem.hidesBackButton = true
 
         self.musicTableView.tableFooterView = UIView()
         self.musicTableView.tableHeaderView = UIView()
+        
+        self.currentMusicCoverImage.image = Facade.sharedInstance().musics().first?.picture.thumbnail
+        
+        self.currentMusicTitle.text = Facade.sharedInstance().musics().first?.name
+        
+        self.currentMusicArtist.text = Facade.sharedInstance().musics().first?.artist
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,15 +57,16 @@ class MusicsListViewController: UIViewController {
     func notationAdded(notification: NSNotification) {
         println("received = \(notification.userInfo)")
         Facade.sharedInstance().addNotation(notification.userInfo!["identifier"] as String, action: notification.userInfo!["action"] as String) { (jsonResponse, error) -> Void in
-            println("json response = \(jsonResponse)")            
+            println("json response = \(jsonResponse)")
+            self.refreshMusics(self)
         }
     }
     
     // MARK: - User Interaction -
 
-    @IBAction func refreshMusics(sender: UIBarButtonItem) {
-        
-        BFRadialWaveHUD.showInView(self.navigationController!.view, withMessage: "Mise à jours des musiques..")
+    
+    @IBAction func refreshMusics(sender: AnyObject) {
+            BFRadialWaveHUD.showInView(self.navigationController!.view, withMessage: "Mise à jours des musiques..")
 
         Facade.sharedInstance().playlist { (jsonPlaylist, error) -> Void in
             
@@ -63,6 +74,8 @@ class MusicsListViewController: UIViewController {
                 
                 println("jsonPlaylist aymen = \(jsonPlaylist)")
                 let playlist = jsonPlaylist!["playlist"]["following"]
+                let currentMusic = jsonPlaylist!["playlist"]["current"]
+                Facade.sharedInstance().addCurrentMusicFromJSON(currentMusic)
                 Facade.sharedInstance().addPlaylistFromJSON(playlist)
                 Facade.sharedInstance().fetchMusicsPictures()
                 BFRadialWaveHUD.sharedInstance().dismiss()
@@ -90,14 +103,14 @@ extension MusicsListViewController: UITableViewDelegate, UITableViewDataSource {
             cell = UITableViewCell(style: .Default, reuseIdentifier: "MusicCell") as? MusicTableViewCell
         }
         
-        println("cellForRowAtIndexPath pourtant count == \(Facade.sharedInstance().musics().count)")
+        println("cellForRowAtIndexPath \(indexPath.row), pourtant count == \(Facade.sharedInstance().musics().count)")
 
-        cell!.music = Facade.sharedInstance().musics()[indexPath.row]
+        cell!.music = Facade.sharedInstance().musics()[indexPath.row + 1 < Facade.sharedInstance().musics().count ? indexPath.row+1: indexPath.row]
         return cell!
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Facade.sharedInstance().musics().count
+        return Facade.sharedInstance().musics().count - 1
     }
 }
 

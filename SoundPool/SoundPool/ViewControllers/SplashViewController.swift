@@ -17,7 +17,9 @@ class SplashViewController: UIViewController {
             
             if error == nil && jsonPlaylist != nil && jsonPlaylist!.isOk() {
                 
+                let currentMusic = jsonPlaylist!["playlist"]["current"]
                 let playlist = jsonPlaylist!["playlist"]["following"]
+                Facade.sharedInstance().addCurrentMusicFromJSON(currentMusic)
                 Facade.sharedInstance().addPlaylistFromJSON(playlist)
                 Facade.sharedInstance().fetchMusicsPictures()
 

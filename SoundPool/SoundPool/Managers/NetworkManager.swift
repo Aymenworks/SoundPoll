@@ -16,7 +16,7 @@ get the playlist from the server, etc..
 class NetworkManager {
     
     func addNotation(musicIdentifier: String, action: String, completionHandler: (JSON?, NSError?) -> Void) {
-        request(.PUT, "http://localhost:3000/\(action)/\(musicIdentifier)")
+        request(.PUT, "http://192.168.3.24:3000/\(action)/\(musicIdentifier)")
             .validate()
             .responseSwiftyJSON { ( request, _, jsonResponse, error) in
                 println("request = \(request)")
@@ -25,7 +25,7 @@ class NetworkManager {
     }
     
     func playlist(completionHandler: (JSON?, NSError?) -> Void) {
-        request(.GET, "http://localhost:3000/playlist")
+        request(.GET, "http://192.168.3.24:3000/playlist")
             .validate()
             .responseSwiftyJSON { (_, _, jsonResponse, error) in
                 completionHandler(jsonResponse, error)
@@ -61,7 +61,6 @@ class NetworkManager {
                     NSNotificationCenter.defaultCenter().postNotificationName("DownloadedImageNotification", object: nil)
                 }
             }
-            
         }
     }
     

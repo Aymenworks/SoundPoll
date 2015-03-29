@@ -31,6 +31,10 @@ public class Facade {
         self.persistencyManager.addMusicWithIdentifier(identifier, name: name, artist: artist, pictureURL: pictureURL, numberOfLikes: numberOfLikes, numberOfDislikes: numberOfDislikes)
     }
     
+    public func addCurrentMusicFromJSON(json: JSON) {
+        self.persistencyManager.addCurrentMusicFromJSON(json)
+    }
+    
     public func addPlaylistFromJSON(json: JSON) {
         self.persistencyManager.addPlaylistFromJSON(json)
     }

@@ -22,6 +22,8 @@ public class Music: NSObject {
     }
     var numberOfLikes: Int!
     var numberOfDislikes: Int!
+    var likedByMe = false
+    var dislikedByMe = false
     
     init(identifier: String, name: String, artist: String?, pictureURL: String?, numberOfLikes: Int?, numberOfDislikes: Int?) {
         super.init()
