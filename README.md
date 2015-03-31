@@ -1,4 +1,4 @@
-‹SoundPoll
+SoundPoll
 ========
 
 To participate in an event, a meetup, even in a party, and to have the possibility of choosing the song which will pass in a few moments with a mobile application, a raspberry and loudspeakers, it was what realized, or almost during the [fHacktory](https://www.linkedin.com/company/3299824?trk=prof-exp-company-name). 
