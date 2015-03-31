@@ -21,7 +21,7 @@ An application that not only do its job, but before everything an app that let p
 
 - The author of the iOS app : Aymen Rebouh [@aymenworks](http://twitter.com/aymenworks).
 
-- The author of the server side, the perso who suggested this cool idea and the one who plays with the raspberry : Gustave Monod [@GusMonod](https://github.com/GusMonod).
+- The author of the server side, the perso who suggested this cool idea, the one who plays with the raspberry and my teammate : Gustave Monod [@GusMonod](https://github.com/GusMonod).
 - Thanks to [@fHacktory](https://github.com/fhacktory) to have organized this event.
 
 ## Licence
