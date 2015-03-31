@@ -70,7 +70,7 @@
 		A5687F881AC789E2008EFD2D /* UIImage+KVNEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNEmpty.m"; sourceTree = "<group>"; };
 		A5687F891AC789E2008EFD2D /* UIImage+KVNImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+KVNImageEffects.h"; sourceTree = "<group>"; };
 		A5687F8A1AC789E2008EFD2D /* UIImage+KVNImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+KVNImageEffects.m"; sourceTree = "<group>"; };
-		A5687F961AC78B94008EFD2D /* SoundPool-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SoundPool-Bridging-Header.h"; sourceTree = "<group>"; };
+		A5687F961AC78B94008EFD2D /* SoundPool-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SoundPool-Bridging-Header.h"; path = "SoundPool/SoundPool-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +94,6 @@
 		A5687F311AC6D0A9008EFD2D = {
 			isa = PBXGroup;
 			children = (
-				A5687F961AC78B94008EFD2D /* SoundPool-Bridging-Header.h */,
 				A5687F3C1AC6D0A9008EFD2D /* SoundPool */,
 				A5687F521AC6D0A9008EFD2D /* SoundPoolTests */,
 				A5687F3B1AC6D0A9008EFD2D /* Products */,
@@ -113,6 +112,7 @@
 		A5687F3C1AC6D0A9008EFD2D /* SoundPool */ = {
 			isa = PBXGroup;
 			children = (
+				A5687F961AC78B94008EFD2D /* SoundPool-Bridging-Header.h */,
 				A5687F3F1AC6D0A9008EFD2D /* AppDelegate.swift */,
 				A5687F6F1AC6EEB1008EFD2D /* Facade.swift */,
 				A5687F6C1AC6ED14008EFD2D /* Managers */,

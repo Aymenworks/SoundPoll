@@ -56,6 +56,11 @@ class PersistencyManager: NSCoding {
         }
     }
     
+    /**
+    Add the current music played in the first place of our musics list ( an array of musics )
+    
+    :param: json The json data describing our music
+    */
     func addCurrentMusicFromJSON(currentMusic: JSON) {
         
         self.musics = []
@@ -65,6 +70,11 @@ class PersistencyManager: NSCoding {
         self.saveMusics()
     }
     
+    /**
+    Add the current playlist music ( a list tof music ) in our musics list ( an array of musics )
+    
+    :param: json The json data describing playlist music
+    */
     func addPlaylistFromJSON(jsonFollowingMusic: JSON) {
         
         for (_, jsonMusic) in jsonFollowingMusic {
@@ -77,6 +87,16 @@ class PersistencyManager: NSCoding {
         self.saveMusics()
     }
     
+    /**
+    Add a music in our musics list ( an array of musics )
+    
+    :param: identifier       The identifier of the music. We use it when an user add a notation about a specific music.
+    :param: name             The music name
+    :param: artist           The music artist
+    :param: pictureURL       The url of the music cover image
+    :param: numberOfLikes    The number of like added by people
+    :param: numberOfDislikes The number of dislike added by people
+    */
     func addMusicWithIdentifier(identifier: String, name: String, artist: String?, pictureURL: String?, numberOfLikes: Int?, numberOfDislikes: Int?) {
         self.musics.append(Music(identifier: identifier, name: name, artist: artist, pictureURL: pictureURL, numberOfLikes: numberOfLikes, numberOfDislikes: numberOfDislikes))
     }

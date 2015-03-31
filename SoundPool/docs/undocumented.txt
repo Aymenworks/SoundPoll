@@ -1,0 +1,281 @@
+PersistencyManager.swift
+	class PersistencyManager: NSCoding
+	private(set) var musics: [Music]
+	required init(coder aDecoder: NSCoder)
+	init()
+	func encodeWithCoder(aCoder: NSCoder)
+SplashViewController.swift
+	class SplashViewController: UIViewController
+	override func viewDidLoad()
+	override func didReceiveMemoryWarning()
+Alamofire.swift
+	func queryComponents(key: String, _ value: AnyObject) -> [(String, String)]
+	func escape(string: String) -> String
+	public var URLString: String
+	public var URLString: String
+	public var URLString: String
+	public var URLString: String
+	public var URLRequest: NSURLRequest
+	struct Singleton
+	static var configuration: NSURLSessionConfiguration =
+	static let instance = Manager(configuration: configuration)
+	required public init(configuration: NSURLSessionConfiguration? = nil)
+	class SessionDelegate: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate, NSURLSessionDataDelegate, NSURLSessionDownloadDelegate
+	var sessionDidBecomeInvalidWithError: ((NSURLSession!, NSError!) -> Void)?
+	var sessionDidFinishEventsForBackgroundURLSession: ((NSURLSession!) -> Void)?
+	var sessionDidReceiveChallenge: ((NSURLSession!, NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential!))?
+	var taskWillPerformHTTPRedirection: ((NSURLSession!, NSURLSessionTask!, NSHTTPURLResponse!, NSURLRequest!) -> (NSURLRequest!))?
+	var taskDidReceiveChallenge: ((NSURLSession!, NSURLSessionTask!, NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential?))?
+	var taskDidSendBodyData: ((NSURLSession!, NSURLSessionTask!, Int64, Int64, Int64) -> Void)?
+	var taskNeedNewBodyStream: ((NSURLSession!, NSURLSessionTask!) -> (NSInputStream!))?
+	var dataTaskDidReceiveResponse: ((NSURLSession!, NSURLSessionDataTask!, NSURLResponse!) -> (NSURLSessionResponseDisposition))?
+	var dataTaskDidBecomeDownloadTask: ((NSURLSession!, NSURLSessionDataTask!) -> Void)?
+	var dataTaskDidReceiveData: ((NSURLSession!, NSURLSessionDataTask!, NSData!) -> Void)?
+	var dataTaskWillCacheResponse: ((NSURLSession!, NSURLSessionDataTask!, NSCachedURLResponse!) -> (NSCachedURLResponse))?
+	var downloadTaskDidFinishDownloadingToURL: ((NSURLSession!, NSURLSessionDownloadTask!, NSURL) -> (NSURL))?
+	var downloadTaskDidWriteData: ((NSURLSession!, NSURLSessionDownloadTask!, Int64, Int64, Int64) -> Void)?
+	var downloadTaskDidResumeAtOffset: ((NSURLSession!, NSURLSessionDownloadTask!, Int64, Int64) -> Void)?
+	required override init()
+	func URLSession(session: NSURLSession!, didBecomeInvalidWithError error: NSError!)
+	func URLSession(session: NSURLSession!, didReceiveChallenge challenge: NSURLAuthenticationChallenge!, completionHandler: ((NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void)!)
+	func URLSessionDidFinishEventsForBackgroundURLSession(session: NSURLSession!)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, willPerformHTTPRedirection response: NSHTTPURLResponse!, newRequest request: NSURLRequest!, completionHandler: ((NSURLRequest!) -> Void)!)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didReceiveChallenge challenge: NSURLAuthenticationChallenge!, completionHandler: ((NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void)!)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, needNewBodyStream completionHandler: ((NSInputStream!) -> Void)!)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didCompleteWithError error: NSError!)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveResponse response: NSURLResponse!, completionHandler: ((NSURLSessionResponseDisposition) -> Void)!)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didBecomeDownloadTask downloadTask: NSURLSessionDownloadTask!)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveData data: NSData!)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, willCacheResponse proposedResponse: NSCachedURLResponse!, completionHandler: ((NSCachedURLResponse!) -> Void)!)
+	func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL)
+	func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
+	func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64)
+	override func respondsToSelector(selector: Selector) -> Bool
+	class TaskDelegate: NSObject, NSURLSessionTaskDelegate
+	let task: NSURLSessionTask
+	let queue: dispatch_queue_t
+	let progress: NSProgress
+	var data: NSData?
+	private(set) var error: NSError?
+	var credential: NSURLCredential?
+	var taskWillPerformHTTPRedirection: ((NSURLSession!, NSURLSessionTask!, NSHTTPURLResponse!, NSURLRequest!) -> (NSURLRequest!))?
+	var taskDidReceiveChallenge: ((NSURLSession!, NSURLSessionTask!, NSURLAuthenticationChallenge) -> (NSURLSessionAuthChallengeDisposition, NSURLCredential?))?
+	var taskDidSendBodyData: ((NSURLSession!, NSURLSessionTask!, Int64, Int64, Int64) -> Void)?
+	var taskNeedNewBodyStream: ((NSURLSession!, NSURLSessionTask!) -> (NSInputStream!))?
+	init(task: NSURLSessionTask)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, willPerformHTTPRedirection response: NSHTTPURLResponse!, newRequest request: NSURLRequest!, completionHandler: ((NSURLRequest!) -> Void)!)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didReceiveChallenge challenge: NSURLAuthenticationChallenge!, completionHandler: ((NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void)!)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, needNewBodyStream completionHandler: ((NSInputStream!) -> Void)!)
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didCompleteWithError error: NSError!)
+	class DataTaskDelegate: TaskDelegate, NSURLSessionDataDelegate
+	var dataTask: NSURLSessionDataTask!
+	override var data: NSData?
+	var dataTaskDidReceiveResponse: ((NSURLSession!, NSURLSessionDataTask!, NSURLResponse!) -> (NSURLSessionResponseDisposition))?
+	var dataTaskDidBecomeDownloadTask: ((NSURLSession!, NSURLSessionDataTask!) -> Void)?
+	var dataTaskDidReceiveData: ((NSURLSession!, NSURLSessionDataTask!, NSData!) -> Void)?
+	var dataTaskWillCacheResponse: ((NSURLSession!, NSURLSessionDataTask!, NSCachedURLResponse!) -> (NSCachedURLResponse))?
+	var dataProgress: ((bytesReceived: Int64, totalBytesReceived: Int64, totalBytesExpectedToReceive: Int64) -> Void)?
+	override init(task: NSURLSessionTask)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveResponse response: NSURLResponse!, completionHandler: ((NSURLSessionResponseDisposition) -> Void)!)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didBecomeDownloadTask downloadTask: NSURLSessionDownloadTask!)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, didReceiveData data: NSData!)
+	func URLSession(session: NSURLSession!, dataTask: NSURLSessionDataTask!, willCacheResponse proposedResponse: NSCachedURLResponse!, completionHandler: ((NSCachedURLResponse!) -> Void)!)
+	class UploadTaskDelegate: DataTaskDelegate
+	var uploadTask: NSURLSessionUploadTask!
+	var uploadProgress: ((Int64, Int64, Int64) -> Void)!
+	func URLSession(session: NSURLSession!, task: NSURLSessionTask!, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64)
+	class DownloadTaskDelegate: TaskDelegate, NSURLSessionDownloadDelegate
+	var downloadTask: NSURLSessionDownloadTask!
+	var downloadProgress: ((Int64, Int64, Int64) -> Void)?
+	var resumeData: NSData?
+	override var data: NSData?
+	var downloadTaskDidFinishDownloadingToURL: ((NSURLSession!, NSURLSessionDownloadTask!, NSURL) -> (NSURL))?
+	var downloadTaskDidWriteData: ((NSURLSession!, NSURLSessionDownloadTask!, Int64, Int64, Int64) -> Void)?
+	var downloadTaskDidResumeAtOffset: ((NSURLSession!, NSURLSessionDownloadTask!, Int64, Int64) -> Void)?
+	func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL)
+	func URLSession(session: NSURLSession!, downloadTask: NSURLSessionDownloadTask!, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
+	func URLSession(session: NSURLSession!, downloadTask: NSURLSessionDownloadTask!, didResumeAtOffset fileOffset: Int64, expectedTotalBytes: Int64)
+	func cURLRepresentation() -> String
+	class func imageResponseSerializer() -> Serializer
+	func responseImage(completionHandler: (NSURLRequest, NSHTTPURLResponse?, UIImage?, NSError?) -> Void) -> Self
+NSURL.h
+	class NSURL : NSObject, NSSecureCoding, NSCoding, NSCopying
+	class NSURLComponents : NSObject, NSCopying
+MusicsListViewController.swift
+	class MusicsListViewController: UIViewController
+	@IBOutlet var musicTableView: UITableView!
+	@IBOutlet var currentMusicTitle: UILabel!
+	@IBOutlet var currentMusicCoverImage: UIImageView!
+	@IBOutlet var currentMusicArtist: UILabel!
+	override func viewDidLoad()
+	override func didReceiveMemoryWarning()
+	deinit
+	func imageDownloaded(notification: NSNotification)
+	func notationAdded(notification: NSNotification)
+	@IBAction func refreshMusics(sender: AnyObject)
+	func timerReloadData()
+	@IBAction func startMusic(sender: UIBarButtonItem)
+	func reloadCurrentMusicUI()
+	class MusicsListViewController : UIViewController
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+Facade.swift
+	struct Singleton
+	static let instance = Facade()
+MusicTableViewCell.swift
+	class MusicTableViewCell: UITableViewCell
+	@IBOutlet var likeButton: UIButton!
+	@IBOutlet var dislikeButton: UIButton!
+	var music: Music!
+	override func awakeFromNib()
+	deinit
+	@IBAction func didClickOnLikeButton()
+	@IBAction func didClickOnDislikeButton()
+	func toggleLike()
+SwiftyJSON.swift
+	public struct JSON
+	public init(data:NSData, options opt: NSJSONReadingOptions = .AllowFragments, error: NSErrorPointer = nil)
+	public init(_ object: AnyObject)
+	public struct JSON
+	public struct JSON
+	public struct JSON
+	public func userExist() -> Bool
+	public func emailExist() -> Bool
+	public func userHasBeenRegistered() -> Bool
+	public func schoolExist() -> Bool
+	public struct JSON
+	public init(stringLiteral value: StringLiteralType)
+	public init(extendedGraphemeClusterLiteral value: StringLiteralType)
+	public init(unicodeScalarLiteral value: StringLiteralType)
+	public struct JSON
+	public init(integerLiteral value: IntegerLiteralType)
+	public struct JSON
+	public init(booleanLiteral value: BooleanLiteralType)
+	public struct JSON
+	public init(floatLiteral value: FloatLiteralType)
+	public struct JSON
+	public init(dictionaryLiteral elements: (String, AnyObject)...)
+	public struct JSON
+	public init(arrayLiteral elements: AnyObject...)
+	public struct JSON
+	public init(nilLiteral: ())
+	public struct JSON
+	public init?(rawValue: AnyObject)
+	public var rawValue: AnyObject
+	public func rawData(options opt: NSJSONWritingOptions = NSJSONWritingOptions(0), error: NSErrorPointer = nil) -> NSData?
+	public func rawString(encoding: UInt = NSUTF8StringEncoding, options opt: NSJSONWritingOptions = .PrettyPrinted) -> String?
+	public struct JSON
+	public var description: String
+	public var debugDescription: String
+	public struct JSON
+	public var array: [JSON]?
+	public var arrayValue: [JSON]
+	public var arrayObject: [AnyObject]?
+	public struct JSON
+	public var dictionary: [String : JSON]?
+	public var dictionaryValue: [String : JSON]
+	public var dictionaryObject: [String : AnyObject]?
+	public struct JSON
+	public var bool: Bool?
+	public var boolValue: Bool
+	public struct JSON
+	public var string: String?
+	public var stringValue: String
+	public struct JSON
+	public var number: NSNumber?
+	public var numberValue: NSNumber
+	public struct JSON
+	public var null: NSNull?
+	public struct JSON
+	public var URL: NSURL?
+	public struct JSON
+	public var double: Double?
+	public var doubleValue: Double
+	public var float: Float?
+	public var floatValue: Float
+	public var int: Int?
+	public var intValue: Int
+	public var uInt: UInt?
+	public var uIntValue: UInt
+	public var int8: Int8?
+	public var int8Value: Int8
+	public var uInt8: UInt8?
+	public var uInt8Value: UInt8
+	public var int16: Int16?
+	public var int16Value: Int16
+	public var uInt16: UInt16?
+	public var uInt16Value: UInt16
+	public var int32: Int32?
+	public var int32Value: Int32
+	public var uInt32: UInt32?
+	public var uInt32Value: UInt32
+	public var int64: Int64?
+	public var int64Value: Int64
+	public var uInt64: UInt64?
+	public var uInt64Value: UInt64
+	public struct JSON
+	public func ==(lhs: JSON, rhs: JSON) -> Bool
+	public func <=(lhs: JSON, rhs: JSON) -> Bool
+	public func >=(lhs: JSON, rhs: JSON) -> Bool
+	public func >(lhs: JSON, rhs: JSON) -> Bool
+	public func <(lhs: JSON, rhs: JSON) -> Bool
+	var isBool:Bool
+	public func ==(lhs: NSNumber, rhs: NSNumber) -> Bool
+	public func !=(lhs: NSNumber, rhs: NSNumber) -> Bool
+	public func <(lhs: NSNumber, rhs: NSNumber) -> Bool
+	public func >(lhs: NSNumber, rhs: NSNumber) -> Bool
+	public func <=(lhs: NSNumber, rhs: NSNumber) -> Bool
+	public func >=(lhs: NSNumber, rhs: NSNumber) -> Bool
+	public struct JSON
+	public init(object: AnyObject)
+	public var dictionaryObjects: [String : AnyObject]?
+	public var arrayObjects: [AnyObject]?
+	public var char: Int8?
+	public var charValue: Int8
+	public var unsignedChar: UInt8?
+	public var unsignedCharValue: UInt8
+	public var short: Int16?
+	public var shortValue: Int16
+	public var unsignedShort: UInt16?
+	public var unsignedShortValue: UInt16
+	public var long: Int?
+	public var longValue: Int
+	public var unsignedLong: UInt?
+	public var unsignedLongValue: UInt
+	public var longLong: Int64?
+	public var longLongValue: Int64
+	public var unsignedLongLong: UInt64?
+	public var unsignedLongLongValue: UInt64
+	public var integer: Int?
+	public var integerValue: Int
+	public var unsignedInteger: Int?
+	public var unsignedIntegerValue: Int
+NSValue.h
+	class NSNumber : NSValue
+AppDelegate.swift
+	class AppDelegate: UIResponder, UIApplicationDelegate
+	var window: UIWindow?
+	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+	func applicationWillResignActive(application: UIApplication)
+	func applicationDidEnterBackground(application: UIApplication)
+	func applicationWillEnterForeground(application: UIApplication)
+	func applicationDidBecomeActive(application: UIApplication)
+	func applicationWillTerminate(application: UIApplication)
+Music.swift
+	public class Music: NSObject
+	let identifier: String!
+	let name: String!
+	let artist: String?
+	var picture: (url: String?, thumbnail: UIImage?)
+	var numberOfLikes: Int!
+	var numberOfDislikes: Int!
+	var likedByMe = false
+	var dislikedByMe = false
+	init(identifier: String, name: String, artist: String?, pictureURL: String?, numberOfLikes: Int?, numberOfDislikes: Int?, likedByMe: Bool? = false, dislikedByMe: Bool? = false)
+	required public init(coder aDecoder: NSCoder)
+	public class Music : NSObject
+	public func encodeWithCoder(aCoder: NSCoder)
+	public class Music : NSObject
+	override public var description: String

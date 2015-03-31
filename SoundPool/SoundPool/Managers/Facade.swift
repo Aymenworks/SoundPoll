@@ -32,48 +32,49 @@ public class Facade {
     // MARK: - Music persistency -
 
     /**
-    <#Description#>
+    Add a music in our musics list ( an array of musics )
     
-    :param: identifier       <#identifier description#>
-    :param: name             <#name description#>
-    :param: artist           <#artist description#>
-    :param: pictureURL       <#pictureURL description#>
-    :param: numberOfLikes    <#numberOfLikes description#>
-    :param: numberOfDislikes <#numberOfDislikes description#>
+    :param: identifier       The identifier of the music. We use it when an user add a notation about a specific music.
+    :param: name             The music name
+    :param: artist           The music artist
+    :param: pictureURL       The url of the music cover image
+    :param: numberOfLikes    The number of like added by people
+    :param: numberOfDislikes The number of dislike added by people
     */
     public func addMusicWithIdentifier(identifier: String, name: String, artist: String?, pictureURL: String?, numberOfLikes: Int?, numberOfDislikes: Int?) {
         self.persistencyManager.addMusicWithIdentifier(identifier, name: name, artist: artist, pictureURL: pictureURL, numberOfLikes: numberOfLikes, numberOfDislikes: numberOfDislikes)
     }
     
     /**
-    <#Description#>
+    Add the current music played in the first place of our musics list ( an array of musics )
     
-    :param: json <#json description#>
+    :param: json The json data describing our music
     */
     public func addCurrentMusicFromJSON(json: JSON) {
         self.persistencyManager.addCurrentMusicFromJSON(json)
     }
     
     /**
-    <#Description#>
+    Add the current playlist music ( a list tof music ) in our musics list ( an array of musics )
     
-    :param: json <#json description#>
+    :param: json The json data describing playlist music
     */
     public func addPlaylistFromJSON(json: JSON) {
         self.persistencyManager.addPlaylistFromJSON(json)
     }
     
     /**
-    <#Description#>
+    The list of musics
     
-    :returns: <#return value description#>
+    :returns: The list of musics
     */
     public func musics() -> [Music] {
         return self.persistencyManager.musics
     }
     
     /**
-    <#Description#>
+    Save the list of music using the Archiving pattern to preserve class encapsuation concept
+    and retrieving data from disk with all musics with theirs properties alredy setted.
     */
     public func saveMusics() {
         self.persistencyManager.saveMusics()
@@ -82,24 +83,30 @@ public class Facade {
     // MARK: - Network -
     
     /**
-    <#Description#>
+    Get the current playlist from the server ( hosted by a raspberry pi )
     
-    :param: completionHandler <#completionHandler description#>
+    :param: completionHandler The callback containing the playlist that'll be
+    executed after the request has finished
     */
     public func playlist(completionHandler: (JSON?, NSError?) -> Void) {
         self.networkManager.playlist(completionHandler)
     }
     
+    /**
+    Send a start action to the raspberry so it can start the music using loudspeakers
+    
+    :param: completionHandler The callback that'll be executed after the request has finished
+    */
     public func startMusic(completionHandler: (JSON?, NSError?) -> Void) {
         self.networkManager.startMusic(completionHandler)
     }
     
     /**
-    <#Description#>
+    Send the notation added by the user about a specific music
     
-    :param: musicIdentifier   <#musicIdentifier description#>
-    :param: action            <#action description#>
-    :param: completionHandler <#completionHandler description#>
+    :param: musicIdentifier   The music ID
+    :param: action            The notation : Like or Dislike
+    :param: completionHandler The callback that'll be executed after the request has finished
     */
     public func addNotation(musicIdentifier: String, action: String, completionHandler: (JSON?, NSError?) -> Void) {
         self.networkManager.addNotation(musicIdentifier, action: action, completionHandler: completionHandler)
@@ -122,7 +129,4 @@ public class Facade {
     public func pictureWithURL(urlImage: String, completionHandler: UIImage? -> Void) {
         self.networkManager.pictureWithURL(urlImage, completionHandler: completionHandler)
     }
-    
-
-
 }
